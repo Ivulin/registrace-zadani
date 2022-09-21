@@ -1,0 +1,13 @@
+.registration_form{
+    background-image: linear-gradient(to right, #f2f3f4, grey);
+    text-align: center;
+    padding: 50px 50px 50px 50px;
+    border-radius: 25px;
+}
+
+.submit_btn{
+    border-radius: 5px;
+    margin: 40px 5px 5px 0px;
+    padding: 5px 5px 5px 5px;
+    text-align: center;
+}
