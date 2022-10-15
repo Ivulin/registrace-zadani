@@ -26,19 +26,19 @@ const Registration = () => {
         setUsr(newUser);         
       };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event,user) => {
         event.preventDefault();
-        if(emailValidation(usr.email) && passwordValidation(usr.password,usr.passwordConfirm))
-        {      
-            let usrName = usr.username ? usr.username : computeUser(usr.email);
-            handleChange('username', usrName);
+        if (emailValidation(user.email)) {      
+            user.username = user.username ? user.username : computeUser(user.email);
+            setUsr(user);  
         }
+        passwordValidation(user.password,user.passwordConfirm);
 
-        console.log(usr);
+        console.log(user);
     }
 
     const emailValidation = (email) => {
-        if(email.indexOf("@") < 1){
+        if (email.indexOf("@") < 1){
             setErrorMessage("Formát emailu není správná.");
             return false;
         };
@@ -46,7 +46,7 @@ const Registration = () => {
     }
 
    const passwordValidation = (pswd, psdwConfirm) =>{
-    if(pswd != psdwConfirm){
+    if (pswd != psdwConfirm){
         setErrorMessage("Zadaná hesla nejsou shodná");
         return false;
     };
@@ -61,11 +61,11 @@ const Registration = () => {
 
   return (   
     <div className="registration_form">       
-        <form onSubmit={handleSubmit}>
-            <TextBox id="email" title={INITIAL_LIST.email} value={usr} onChangeHandler={handleChange}/>
-            <TextBox id="username" title={INITIAL_LIST.username} value={usr} onChangeHandler={handleChange}/>
-            <TextBox id="password" title={INITIAL_LIST.password} value={usr} onChangeHandler={handleChange}/>
-            <TextBox id="passwordConfirm" title={INITIAL_LIST.passwordConfirm} value={usr} onChangeHandler={handleChange}/>
+        <form onSubmit={(e)=>handleSubmit(e,usr)}>
+            <TextBox id="email" title={INITIAL_LIST.email} value={usr.email} onChangeHandler={handleChange}/>
+            <TextBox id="username" title={INITIAL_LIST.username} value={usr.username} onChangeHandler={handleChange}/>
+            <TextBox id="password" title={INITIAL_LIST.password} value={usr.password} onChangeHandler={handleChange}/>
+            <TextBox id="passwordConfirm" title={INITIAL_LIST.passwordConfirm} value={usr.passwordConfirm} onChangeHandler={handleChange}/>
             {errorMessage ? <div>{errorMessage}</div> : null}
             <button className='submit_btn' type="submit">REGISTRATION</button>
         </form>

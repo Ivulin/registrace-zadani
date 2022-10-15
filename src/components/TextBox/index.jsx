@@ -4,8 +4,8 @@ import './style.css';
 const TextBox = ({id, title, value, onChangeHandler}) => {
     const [text, setText] = useState("");
 
-    useEffect(()=>{
-        setText(value[id]);
+    useEffect(() => {
+        setText(value);
     },[value]);
 
   return (       
